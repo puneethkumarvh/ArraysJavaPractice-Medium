@@ -1,0 +1,88 @@
+//Question link: https://www.naukri.com/code360/problems/reading_6845742?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTabValue=PROBLEM
+//Brute force approach 
+//Time Complexity O(N*N)
+//code 
+
+public class Solution {
+    public static String read(int n, int []book, int target){
+        for(int i=0;i<n;i++){
+            int a=book[i];
+            for(int j=i+1;j<n;j++){
+                if(book[j]==target-a){
+                    return "YES";
+                }
+            }
+        }
+        return "NO";
+    }
+}
+
+//Better soltuion using hashset .
+//Time complexity is O(N) but space complexity is O(N) in worst case.
+
+import java.util.HashSet;
+
+public class Solution {
+    public static String read(int n, int []book, int target){
+        HashSet<Integer> mpp= new HashSet<>();
+        for(int i : book){
+            if(mpp.contains(target-i) ==true){
+                return "YES";
+            }else{
+                mpp.add(i);
+            }
+        }
+        return "NO";
+    }
+}
+
+//Optimal solution 
+//Using Time complexity of O(NlogN)
+import java.util.Arrays;
+public class Solution {
+    public static String read(int n, int []book, int target){
+        Arrays.sort(book);
+        int i =0;
+        int j = n-1;
+        while(i<j){
+            int sum = book[i]+book[j];
+            if(sum < target){
+                i++;
+            }else if (sum>target){
+                j--;
+            }else{
+                return "YES";
+            }
+        }
+        return "NO";
+    }
+}
+
+
+//Similar variant problem to return their indexes. 
+//Question link: https://leetcode.com/problems/two-sum/
+//code 
+//Better and optimal approach. becz when we sort indexes will change and we will miss the output.
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> mpp = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(mpp.containsKey(target-nums[i])){
+                int[] result =  {i,mpp.get(target-nums[i])};
+                return result;
+            }else{
+                mpp.put(nums[i],i);
+            }
+        }
+        int[] result= {-1,-1};
+        return result;
+
+        
+    }
+}
+
+
+
+
+
