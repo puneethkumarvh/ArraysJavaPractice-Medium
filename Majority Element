@@ -1,0 +1,34 @@
+//Better solution is by using hashmaps.
+
+//Optimal soultion.
+//Moore's voting algorithm .
+//Time complexity is O(2N) if question mentions it may or may not contain element greater than n/2. else it is O(N) . 
+//Space complexity is O(1)
+public class Solution {
+    public static int majorityElement(int []v) {
+        int cnt = 0;
+        int ele=v[0];
+        for(int i:v){
+            if(cnt == 0){
+                ele= i;
+                cnt++;
+            }else if(ele == i){
+                cnt++;
+            }else{
+                cnt--;
+            }
+        }
+        int ele_cnt=0;
+        for(int j:v){
+            if(j==ele){
+                ele_cnt++;
+            }
+
+        }
+        if(ele_cnt>v.length/2){
+            return ele;
+        }else{
+            return -1;
+        }
+    }
+}
