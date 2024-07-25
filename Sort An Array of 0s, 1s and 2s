@@ -1,0 +1,63 @@
+//Question link : https://www.naukri.com/code360/problems/sort-an-array-of-0s-1s-and-2s_892977?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems&leftPanelTabValue=PROBLEM
+//Time complexity is O(2N) as we are iterating the array twice. 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void sortArray(ArrayList<Integer> arr, int n) {
+        int cnt_zero = 0;
+        int cnt_one = 0;
+        int cnt_two = 0;
+        for(int i : arr){
+            if(i == 0){
+                cnt_zero+=1;
+            }else if(i==1){
+                cnt_one +=1;
+            }else{
+                cnt_two +=1;
+            }
+        }
+        int i=0;
+        for(;i<cnt_zero;i++){
+            arr.set(i,0);
+        }
+        for(;i<cnt_one+cnt_zero;i++){
+            arr.set(i,1);
+        }
+        for(;i<cnt_two+cnt_zero+cnt_one;i++){
+            arr.set(i,2);
+        }
+    }
+}
+
+//Optimal solution 
+//Time complexity is O(N) as we are traversing from mid to high +1 and entire traversal is length of the array.
+//Dutch national flag algorithm . 
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void sortArray(ArrayList<Integer> arr, int n) {
+        int low=0;
+        int mid = 0;
+        int high = n-1;
+        while(mid<high+1){
+            if(arr.get(mid)==0){
+                swap(arr,mid,low);
+                low++;
+                mid++;
+            }else if(arr.get(mid)==1){
+                mid++;
+            }else{
+                swap(arr,mid,high);
+                high--;
+            }
+        }
+    }
+    public static void swap(ArrayList<Integer> arr,int i,int j){
+        Integer temp = arr.get(i);
+        arr.set(i,arr.get(j));
+        arr.set(j,temp);
+
+    }
+}
+
