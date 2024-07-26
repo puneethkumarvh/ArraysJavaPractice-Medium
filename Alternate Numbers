@@ -41,5 +41,23 @@ public class Solution {
         }
 }
 
+//Using array in O(N) time and space complexity.
+//code 
+public class Solution {
+    public static int[] alternateNumbers(int []a) {
+        int []arr=new int[a.length];
+        int pos=0;
+        int neg = 1;
+        for(int i:a){
+            if(i>0){
+                arr[pos]=i;
+                pos+=2;
+            }else{
+                arr[neg]=i;
+                neg+=2;
+            }
 
-//
+        }
+        return arr;
+    }
+}
