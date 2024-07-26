@@ -1,0 +1,20 @@
+//Question link: https://www.naukri.com/code360/problems/stocks-are-profitable_893405?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTabValue=PROBLEM
+//Dynamic programming becz we are remembering the past. 
+//Time complexity is O(N) and space complexity is O(1)
+//code 
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution{
+    public static int maximumProfit(ArrayList<Integer> prices){
+        Integer maxProfit=0;
+        Integer minNum= prices.get(0);
+        for(int i:prices){
+            minNum=Math.min(minNum,i);
+            maxProfit=Math.max(maxProfit,i-minNum);
+        }
+        return maxProfit;
+    }
+}
